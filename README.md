@@ -1,3 +1,3 @@
-# angular-heroes
+# Angular-heroes-tutorial
 
 https://github.com/angular/quickstart
