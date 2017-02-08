@@ -9,14 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+// Hero Class 생성
+var Hero = (function () {
+    function Hero() {
+    }
+    return Hero;
+}());
+exports.Hero = Hero;
 var AppComponent = (function () {
     function AppComponent() {
-        this.name = 'Angular';
+        this.title = 'Tour of Heroes';
+        this.hero = {
+            id: 1,
+            name: 'Windstorm'
+        };
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<h1>Hello {{name}}</h1>",
+            /*
+             * property -> Binding -> {{ 단방향바인딩 }}
+             *
+             * template의 오타 방지를 위하여 백틱을 활용한다 " ` "
+             *
+             * ngModel directive를 통하여 two-way binding을 사용한다
+             * */
+            template: "<h1>{{title}}</h1>\n\t\t\t\t<h2>{{hero.name}} details!</h2>\n\t\t\t\t<div>\n\t\t\t\t\t<label>id : </label>{{hero.id}}\n\t\t\t\t</div>\n\t\t\t\t<div>\n\t\t\t\t\t<label>name : </label>\n\t\t\t\t\t<input [(ngModel)]=\"hero.name\" placeholder=\"name\">\n\t\t\t\t</div>\n\t\t\t",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
