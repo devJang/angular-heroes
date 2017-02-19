@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-// Data Binding 표시 -> Directive & Component Input property 설
+// Data Binding 표시 -> Directive & Component Input property 설정
 import { OnInit } from '@angular/core';
 
 import { Hero } from './hero';
