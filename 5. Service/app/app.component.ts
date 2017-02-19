@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
+
+// Data Binding 표시 -> Directive & Component Input property 설
 import { OnInit } from '@angular/core';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 
 @Component({
-	selector : 'my-app',
-	// template과 같이 css도 사용할 수 있다. 마치 html의 <style></style>을 연상시킨다.
-	styles   : [ `
+	selector  : 'my-app',
+	styles    : [ `
             .selected {
               background-color: #CFD8DC !important;
               color: white;
@@ -57,24 +58,16 @@ import { HeroService } from './hero.service';
             }
           `
 	],
-	providers : [ HeroService ],
-	
 	/*
-	 * property -> Binding -> {{ 단방향바인딩 }}
-	 *
-	 * template의 오타 방지를 위하여 백틱을 활용한다 " ` "
-	 *
-	 * ngModel directive를 통하여 two-way binding을 사용한다
-	 * */
+		Service가 Component에서 사용되려면 클래스 제공자(Class Providers)에
+		선언되어 Component 내부로 의존성 주입이 이루어져야 한다.
+		Providers는 사용할 의존성 주입 방법을 결정하는 방법을 제공한다.
+	 */
+	providers : [ HeroService ],
 	template : `
         <h1>{{title}}</h1>
 				<h2>My Heroes</h2>
 				<ul class="heroes">
-				    <!--
-				        1. 영웅이 아닌 영웅들이기 때문에 *ngFor문을 활용하여 나열해준다
-				        2. 클릭시 함수를 호출하며 선택한 hero를 넘긴다
-				        3. 선택한 영웅과 details의 영웅이 같다면 li의 class에 selected를 추가해준다.
-				    -->
 				    <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
 				    [class.selected] = "hero === selectedHero">
 				        <span class="badge">{{hero.id}}</span> {{hero.name}}
@@ -90,11 +83,12 @@ import { HeroService } from './hero.service';
 })
 
 export class AppComponent implements OnInit {
-	constructor(private heroService : HeroService) { }
+	// 생성자 정의
+	constructor(private heroService : HeroService) {
+	}
 	
 	title = 'Tour of Heroes';
 	heroes : Hero[];
-	// 선택된 영웅을 위하여 정의한다
 	selectedHero : Hero;
 	
 	/*
@@ -105,10 +99,15 @@ export class AppComponent implements OnInit {
 		this.selectedHero = hero;
 	}
 	
+	/*
+		then() 메서드는 매개변수로 두가지를 받을 수 있다.
+		ex => (성공 , 호출) 콜백 함수
+	 */
 	getHeroes() : void {
 		this.heroService.getHeroes().then(heroes => this.heroes = heroes);
 	}
 	
+	// 속성 바인딩 후 Component와 Directive 초기화시 호출
 	ngOnInit() : void {
 		this.getHeroes();
 	}
