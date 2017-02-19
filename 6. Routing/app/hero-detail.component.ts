@@ -12,7 +12,9 @@ import { HeroService } from "./hero.service";
 	moduleId    : module.id,
 	selector    : 'my-hero-detail',
 	templateUrl : './hero-detail.component.html',
+	styleUrls   : [ './hero-detail.component.css' ]
 })
+
 
 export class HeroDetailComponent implements OnInit {
 	// @Input() 장식자는 외부에서 전달된 값을 받기 위하여 사용한다
