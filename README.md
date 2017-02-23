@@ -7,7 +7,7 @@
 > <https://angular.io/resources/live-examples/toh-6/ts/eplnkr.html>
 
 ---
-(https://angular.io/resources/images/devguide/toh/nav-diagram.png)
+![스크린샷](https://angular.io/resources/images/devguide/toh/nav-diagram.png)
 
 ---
-(https://angular.io/resources/images/devguide/toh/toh-anim.gif)
+![움짤](https://angular.io/resources/images/devguide/toh/toh-anim.gif)
