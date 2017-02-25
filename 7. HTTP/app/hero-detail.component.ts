@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -7,7 +7,6 @@ import 'rxjs/add/operator/switchMap';
 import { Hero } from './hero';
 import { HeroService } from "./hero.service";
 
-// AppComponent에서 HeroDetailComponent를 component화 한다
 @Component({
 	moduleId    : module.id,
 	selector    : 'my-hero-detail',
@@ -16,8 +15,6 @@ import { HeroService } from "./hero.service";
 })
 
 export class HeroDetailComponent implements OnInit {
-	// @Input() 장식자는 외부에서 전달된 값을 받기 위하여 사용한다
-	@Input()
 	hero : Hero;
 	
 	constructor(private heroService : HeroService,
@@ -32,5 +29,10 @@ export class HeroDetailComponent implements OnInit {
 	
 	goBack() : void {
 		this.location.back();
+	}
+	
+	save() : void {
+		this.heroService.update(this.hero)
+			.then(()=>this.goBack());
 	}
 }
