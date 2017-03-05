@@ -11,7 +11,7 @@ import { Hero } from './hero';
  */
 @Injectable()
 export class HeroService {
-	
+	// body contentType을 체크한다
 	private headers = new Headers({'Content-type' : 'application/json'});
 	private heroesUrl = 'api/heroes';
 	
