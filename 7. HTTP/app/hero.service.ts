@@ -16,14 +16,20 @@ export class HeroService {
 	private heroesUrl = 'api/heroes';
 	
 	constructor(private http : Http) {}
-	
+
+	/*
+		CRUD를 구현하는 부분
+	 */
+
+	// Read : get
 	getHeroes() : Promise<Hero[]> {
 		return this.http.get(this.heroesUrl)
 					.toPromise()
 					.then(response => response.json().data as Hero[])
 					.catch(this.handleError);
 	}
-	
+
+	// Read : get
 	getHero(id : number) : Promise<Hero> {
 		const url = `${this.heroesUrl}/${id}`;
 			
@@ -32,7 +38,8 @@ export class HeroService {
 			.then(response => response.json().data as Hero)
 			.catch(this.handleError);
 	}
-	
+
+	// Update : put
 	update(hero : Hero) : Promise<Hero> {
 		const url = `${this.heroesUrl}/${hero.id}`;
 		
@@ -42,7 +49,8 @@ export class HeroService {
 				.then(() => hero)
 				.catch(this.handleError);
 	}
-	
+
+	// Create : post
 	create(name : string) : Promise<Hero> {
 		return this.http
 				.post(this.heroesUrl, JSON.stringify({name : name}), {headers : this.headers})
@@ -50,7 +58,8 @@ export class HeroService {
 				.then(res => res.json().data)
 				.catch(this.handleError);
 	}
-	
+
+	// Delete : delete
 	delete(id : number) : Promise<void> {
 		const url = `${this.heroesUrl}/${id}`;
 		
